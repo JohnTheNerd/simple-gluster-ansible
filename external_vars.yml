@@ -1,0 +1,3 @@
+---
+gluster_brick_path: '/data/gluster'
+gluster_mountpoint: '/gluster'
