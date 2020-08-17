@@ -2,7 +2,7 @@
 
 Yet another Ansible playbook to install GlusterFS, but designed to be as simple as possible and with TLS encryption configured and enabled out-of-the-box.
 
-To use it, create an inventory file that has all of the hosts you need (groups don't matter, you'll get GlusterFS installed on all hosts defined) and just run `ansible-playbook site.yml` - yes, that's really it!
+To use it, create an inventory file that has all of the hosts you need in the `gluster` group (an example file can be found [here](inventory.ini)), and just run `ansible-playbook site.yml` - yes, that's really it!
 
 It has been tested on Raspbian (now called Raspberry Pi OS) Buster on a combination of Raspberry Pi 4's and Raspberry Pi 3's, but should work just fine on anything else running 64-bit Debian or Ubuntu with systemd.
 

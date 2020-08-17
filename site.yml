@@ -1,7 +1,7 @@
 ---
 
 - name: Install and configure GlusterFS on all nodes
-  hosts: all
+  hosts: gluster
   vars_files:
     - external_vars.yml
   become: true
