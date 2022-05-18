@@ -1,6 +1,6 @@
 # simple-gluster-ansible
 
-Yet another Ansible playbook to install GlusterFS, but designed to be as simple as possible and with TLS encryption configured and enabled out-of-the-box.
+An Ansible playbook to install GlusterFS with TLS encryption configured and enabled out-of-the-box, designed to be as simple as possible.
 
 To use it, create an inventory file that has all of the hosts you need in the `gluster` group (an example file can be found [here](inventory.ini)), and just run `ansible-playbook site.yml` - yes, that's really it!
 
@@ -16,7 +16,7 @@ It has been tested on Raspbian (now called Raspberry Pi OS) Buster on a combinat
 
     - performance.cache-size: 128MB
     - write-behind: off
-    - performance.write-behind-window-size: 0B (effectively disabling write-behind due to corruption issues I've encountered before)
+    - performance.write-behind-window-size: 0B
     - quick-read: on
     - auth.allow and auth.ssl-allow is set to only allow the nodes that are configured in the inventory
     - ssl.cipher-list: 'HIGH:!SSLv2:!SSLv3'

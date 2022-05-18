@@ -1,17 +1,5 @@
 ---
 
-- name: Enable the 64-bit kernel if we're running on a Raspberry Pi
-  lineinfile:
-    line: 'arm_64bit=1'
-    dest: /boot/config.txt
-  register: boot_config
-  when: ansible_lsb['id'] == 'Raspbian'
-
-- name: Reboot if necessary
-  reboot:
-    reboot_timeout: 120
-  when: boot_config.changed
-
 # obtain a list of all hosts
 - name: Obtain a list of all hosts
   set_fact:
@@ -50,12 +38,6 @@
     autoremove: 'yes'
     upgrade: 'dist'
 
-- name: Remove libgfxdr0 if we're on Raspbian because it somehow breaks gluster installation
-  apt:
-    name: libgfxdr0
-    state: absent
-  when: ansible_lsb['id'] == 'Raspbian'
-
 - name: Install GlusterFS server and client
   apt:
     pkg:
@@ -72,12 +54,6 @@
   file: 
     path: '{{ gluster_mountpoint }}'
     state: directory
-
-# did not work for some strange reason
-# - name: Create a trusted storage pool
-#   gluster_peer:
-#         state: present
-#         nodes: '{{ nodeList }}'
 
 - name: Generate Diffie-Hellman parameters to use for in-transit data encryption
   openssl_dhparam:
